@@ -6,7 +6,7 @@ interface OptionButtonProps {
     children: React.ReactNode;
     selected?: boolean;
     onClick: () => void;
-    layout?: 'grid' | 'flex' | 'column'; // Prop para cambiar el layout
+    layout?: 'grid' | 'flex' | 'column' | 'grid2'; // Prop para cambiar el layout
 }
 
 const StyledOptionButton = styled.button<OptionButtonProps>`
@@ -19,8 +19,20 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 
-  &:hover:,&:focus {
-    background-color: #231331;
+  &:hover {
+    background-color: '#231331';
+    color: '#fff';
+  }
+
+  @media (min-width: 1350px) {
+    font-size: 14px;
+    box-sizing: border-box;
+    min-height: 50px;
+
+    &:hover,&:focus,&:active {
+      background-color: #231331;
+      color: #fff;
+    }
   }
 
   ${({ layout }) =>
@@ -41,7 +53,6 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
         layout === 'column' &&
         css`
       width: 100%;
-      height: 39px;
     `}
 `;
 

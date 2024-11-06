@@ -4,12 +4,27 @@ import styled from 'styled-components';
 import Button from '../Components/Button';
 import Header from '../Components/Header';
 
+const SplitContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1350px) {
+    flex-direction: row-reverse;
+    margin: 0 auto;
+    padding: 0;
+    justify-content: space-between;
+    height: 100%;
+  }
+`;
 const MainContainer = styled.div`
   padding: 0 35px;
   display: flex;
   flex-direction: column;
   align-items: start;
   text-align: center;
+  @media (min-width: 1350px) {
+    justify-content: center;
+    padding-left: 160px;
+  }
 `;
 
 const Message = styled.p`
@@ -26,18 +41,20 @@ const SubMessage = styled.p`
 `;
 
 const FinalScreen: React.FC = () => {
-    return (
-        <>
-        <Header currentStep={6} totalSteps={6}/>
+  return (
+    <>
+      <SplitContainer>
+        <Header currentStep={6} totalSteps={6} />
         <MainContainer>
-            <Message>Muchas Gracias</Message>
-            <SubMessage className='sub-message'>por querer ser parte  </SubMessage>
-            <SubMessage>de la familia Scoopers.</SubMessage>
-            <p><em>Nos vemos pronto!</em></p>
-            <Button onClick={() => alert("Formulario completado")} className='final'>Finalizar</Button>
+          <Message>Muchas Gracias</Message>
+          <SubMessage className='sub-message'>por querer ser parte  </SubMessage>
+          <SubMessage>de la familia Scoopers.</SubMessage>
+          <p><em>Nos vemos pronto!</em></p>
+          <Button onClick={() => alert("Formulario completado")} className='final'>Finalizar</Button>
         </MainContainer>
-        </>
-    );
+      </SplitContainer>
+    </>
+  );
 };
 
 export default FinalScreen;

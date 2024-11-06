@@ -13,13 +13,33 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   padding-bottom: 49px;
   padding-top: 43px;
+
+  @media (min-width: 1350px) {
+    padding: 0;
+    flex-basis: 50%;
+    background: linear-gradient(283.73deg, #231331 -29.4%, #00CCBC 50.02%);
+    border-radius: 200px 0 0 200px;
+    position: relative;
+    height: 100vh;
+  }
 `;
 
 const BackgroundImage = styled.img`
   padding-left: 10px;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  @media (min-width: 1350px) {
+    content: url('/header-man.png');
+    padding: 0;
+    position: absolute;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%); 
+    width: auto;
+    height: auto;
+    max-height: 100%; 
+  }
 `;
 
 const StepIndicator = styled.div`
@@ -30,12 +50,21 @@ const StepIndicator = styled.div`
   right: 16px;
   font-family: 'SF Pro Display', sans-serif;
   color: #231331;
+
+  @media (min-width: 1350px) {
+    top: 195px;
+    right: 130px;
+  }
 `;
 
 const CurrentStep = styled.span`
   font-size: 18px; 
   font-weight: bold;
   margin-right: 6px; 
+
+  @media (min-width: 1350px) {
+    font-size: 24px;
+  }
 `;
 
 const TotalSteps = styled.span`
@@ -43,11 +72,19 @@ const TotalSteps = styled.span`
   font-weight: normal;
   margin-left: 6px;
   padding-top: 6px;
+
+  @media (min-width: 1350px) {
+    font-size: 14px;
+  }
 `;
 
 const LogoCS = styled.img`
   position: absolute;
   left: 49px;
+
+  @media (min-width: 1350px) {
+  display: none;
+  }
 `;
 
 const Header: React.FC<HeaderProps> = ({ currentStep, totalSteps }) => {

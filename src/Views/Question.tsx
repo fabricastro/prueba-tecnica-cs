@@ -7,10 +7,35 @@ import styled, { css } from 'styled-components';
 import { IoArrowBack } from "react-icons/io5";
 import Input from '../Components/Input';
 import FinalScreen from './FinalScreen';
+import ProgressBar from '../Components/ProgressBar';
 
-const MainContainer = styled.div`
-  padding: 0 35px;
+const SplitContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: 1350px) {
+    
+  flex-direction: row-reverse;
+    margin: 0 auto;
+    padding: 0;
+    justify-content: space-between;
+    height: 100%;
+  }
 `;
+
+const TextContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 35px;
+  /* Ajustar el ancho y el alineamiento del texto en escritorio */
+  @media (min-width: 1350px) {
+    padding-left: 160px;
+    padding-right: 100px;
+  }
+`;
+
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -26,6 +51,14 @@ const ButtonsContainer = styled.div`
   gap: 7px;
 `;
 
+const LogoDesktop = styled.img`
+  display: none;
+  @media (min-width: 1350px) {
+   display: block;
+   max-width: 120px
+  }
+`;
+
 const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'column' }>`
   display: flex;
   flex-wrap: wrap;
@@ -34,25 +67,33 @@ const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'colum
   gap: 5px;
 
   ${({ layout }) =>
-        layout === 'grid' &&
-        css`
+    layout === 'grid' &&
+    css`
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       width: 100%;
+
+      @media (min-width: 1350px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     `}
 
   ${({ layout }) =>
-        layout === 'column' &&
-        css`
+    layout === 'column' &&
+    css`
       flex-direction: column;
       width: 100%;
       margin-top: 0;
       gap: 5px;
+
+      @media (min-width: 1350px) {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     `}
     
   ${({ layout }) =>
-        layout === 'grid2' &&
-        css`
+    layout === 'grid2' &&
+    css`
       display: grid; 
       grid-template-columns: repeat(2, 1fr);
       width: 100%;
@@ -60,85 +101,96 @@ const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'colum
       & > *:last-child {
         grid-column: span 2;
       }
+     
+      @media (min-width: 1350px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        & > *:last-child {
+        grid-column: span 1;
+      }
+      }
     `}
+    
 `;
 
 export const Question: React.FC = () => {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [isComplete, setIsComplete] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isComplete, setIsComplete] = useState(false);
 
-    const handleNext = () => {
-        if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
-            setSelectedOption(null);
-        } else {
-            setIsComplete(true);
-        }
-    };
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedOption(null);
+    } else {
+      setIsComplete(true);
+    }
+  };
 
-    const handleBack = () => {
-        if (currentQuestionIndex > 0) {
-            setCurrentQuestionIndex(currentQuestionIndex - 1);
-            setSelectedOption(null);
-        }
-    };
+  const handleBack = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setSelectedOption(null);
+    }
+  };
 
-    const handleOptionSelect = (option: string) => {
-        setSelectedOption(option);
-    };
+  const handleOptionSelect = (option: string) => {
+    setSelectedOption(option);
+  };
 
-    const renderTextWithBold = (text: string) => {
-        const parts = text.split(/(\*\*[^*]+\*\*)/); 
-        return parts.map((part, index) =>
-            part.startsWith('**') && part.endsWith('**') ? (
-                <strong key={index}>{part.slice(2, -2)}</strong>
-            ) : (
-                part
-            )
-        );
-    };
-
-    const currentQuestion = questions[currentQuestionIndex];
-
-    return (
-        <>
-            {isComplete ? (
-                <FinalScreen />
-            ) : (
-                <>
-                    <Header currentStep={currentQuestionIndex + 1} totalSteps={questions.length} />
-                    <MainContainer>
-                        <QuestionContainer>
-                            <>
-                                {currentQuestion.text && <p>{renderTextWithBold(currentQuestion.text)}</p>}
-                                <p>{currentQuestion.question}</p>
-                                {currentQuestion.input && <Input placeholder={currentQuestion.input} />}
-                                <OptionsContainer layout={currentQuestion.layout}>
-                                    {currentQuestion.options?.map((option) => (
-                                        <OptionButton
-                                            key={option}
-                                            selected={selectedOption === option}
-                                            onClick={() => handleOptionSelect(option)}
-                                            layout={currentQuestion.layout}
-                                        >
-                                            {option}
-                                        </OptionButton>
-                                    ))}
-                                </OptionsContainer>
-                            </>
-                        </QuestionContainer>
-                        <ButtonsContainer>
-                            {currentQuestionIndex > 0 && (
-                                <Button onClick={handleBack} variant="tertiary">
-                                    <IoArrowBack className="icon" />
-                                </Button>
-                            )}
-                            <Button onClick={handleNext}>Siguiente</Button>
-                        </ButtonsContainer>
-                    </MainContainer>
-                </>
-            )}
-        </>
+  const renderTextWithBold = (text: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/);
+    return parts.map((part, index) =>
+      part.startsWith('**') && part.endsWith('**') ? (
+        <strong key={index}>{part.slice(2, -2)}</strong>
+      ) : (
+        part
+      )
     );
+  };
+
+  const currentQuestion = questions[currentQuestionIndex];
+
+  return (
+    <>
+      <ProgressBar currentStep={currentQuestionIndex + 1} totalSteps={questions.length} />
+      {isComplete ? (
+        <FinalScreen />
+      ) : (
+
+        <SplitContainer>
+          <Header currentStep={currentQuestionIndex + 1} totalSteps={6} />
+          <TextContainer>
+            <LogoDesktop src="/logo.png" alt="Logo Customer Scoops" />
+            <QuestionContainer>
+              <>
+                {currentQuestion.text && <p>{renderTextWithBold(currentQuestion.text)}</p>}
+                <p>{currentQuestion.question}</p>
+                {currentQuestion.input && <Input placeholder={currentQuestion.input} />}
+                <OptionsContainer layout={currentQuestion.layout}>
+                  {currentQuestion.options?.map((option) => (
+                    <OptionButton
+                      key={option}
+                      selected={selectedOption === option}
+                      onClick={() => handleOptionSelect(option)}
+                      layout={currentQuestion.layout}
+                    >
+                      {option}
+                    </OptionButton>
+                  ))}
+                </OptionsContainer>
+              </>
+            </QuestionContainer>
+            <ButtonsContainer>
+              {currentQuestionIndex > 0 && (
+                <Button onClick={handleBack} variant="tertiary">
+                  <IoArrowBack className="icon" />
+                </Button>
+              )}
+              <Button onClick={handleNext}>Siguiente</Button>
+            </ButtonsContainer>
+          </TextContainer>
+        </SplitContainer>
+      )}
+    </>
+  );
 };

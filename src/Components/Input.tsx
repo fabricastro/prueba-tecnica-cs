@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.5rem 0;
-    border: none;
+  border: none;
   background-color: transparent;
   border-bottom: 1px solid #23133180;
   outline: none;
@@ -16,6 +16,10 @@ const StyledInput = styled.input`
 
   &:focus {
     border-bottom: 1px solid #4A148C;
+  }
+ 
+  @media (min-width: 1350px) {
+    font-size: 18px;
   }
 `;
 

@@ -33,7 +33,10 @@ const StyledButton = styled.button<ButtonProps>`
     background-color: #aaa;
     cursor: not-allowed;
   }
-
+  
+  @media (min-width: 1350px) {
+      max-height: 50px;
+  }
   /* Estilos específicos para variantes */
   ${({ variant }) =>
     variant === 'primary' &&
@@ -43,6 +46,11 @@ const StyledButton = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #3e2357;
+      }
+
+      @media (min-width: 1350px) {
+        font-size: 14px;
+        height: 50px;
       }
     `}
 
@@ -71,6 +79,11 @@ const StyledButton = styled.button<ButtonProps>`
       align-items: center;
       &:hover {
         background-color: #f0f0f0;
+      }
+
+      @media (min-width: 1350px) {
+        height: 50px;
+        width: 50px;
       }
     `}
 `;
