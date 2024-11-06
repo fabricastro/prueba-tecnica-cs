@@ -1,10 +1,10 @@
-import WelcomeScreen from './Views/WelcomeScreen';
+import {Question} from './Views/Question';
 
 function App() {
   return (
     <>
     <div className='App'>
-      <WelcomeScreen/>
+      <Question/>
     </div>
     </>
   )

@@ -7,7 +7,7 @@ const StyledInput = styled.input`
   background-color: transparent;
   border-bottom: 1px solid #23133180;
   outline: none;
-
+  color: #231331;
   &::placeholder {
     font-family: 'SF Pro', sans-serif;
     font-size: 17px;
