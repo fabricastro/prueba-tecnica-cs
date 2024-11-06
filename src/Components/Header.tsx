@@ -12,7 +12,6 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 49px;
-  padding-top: 43px;
 
   @media (min-width: 1350px) {
     padding: 0;

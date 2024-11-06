@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { questions } from '../data/questions';
 import Header from '../Components/Header';
 import Button from '../Components/Button';
@@ -8,14 +8,14 @@ import { IoArrowBack } from "react-icons/io5";
 import Input from '../Components/Input';
 import FinalScreen from './FinalScreen';
 import ProgressBar from '../Components/ProgressBar';
+import { useSurvey } from '../Context/SurveyContext';
 
 const SplitContainer = styled.div`
   display: flex;
   flex-direction: column;
   
   @media (min-width: 1350px) {
-    
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
     margin: 0 auto;
     padding: 0;
     justify-content: space-between;
@@ -29,13 +29,12 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0px 35px;
-  /* Ajustar el ancho y el alineamiento del texto en escritorio */
+
   @media (min-width: 1350px) {
     padding-left: 160px;
     padding-right: 100px;
   }
 `;
-
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -55,7 +54,7 @@ const LogoDesktop = styled.img`
   display: none;
   @media (min-width: 1350px) {
    display: block;
-   max-width: 120px
+   max-width: 120px;
   }
 `;
 
@@ -77,7 +76,6 @@ const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'colum
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     `}
-
   ${({ layout }) =>
     layout === 'column' &&
     css`
@@ -87,10 +85,10 @@ const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'colum
       gap: 5px;
 
       @media (min-width: 1350px) {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     `}
-    
   ${({ layout }) =>
     layout === 'grid2' &&
     css`
@@ -105,40 +103,47 @@ const OptionsContainer = styled.div<{ layout: 'grid' | 'grid2' | 'flex' | 'colum
       @media (min-width: 1350px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         & > *:last-child {
-        grid-column: span 1;
-      }
+          grid-column: span 1;
+        }
       }
     `}
-    
 `;
 
 export const Question: React.FC = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const { currentStep, setCurrentStep, responses, setResponse, userName, setUserName } = useSurvey();
+  const [selectedOption, setSelectedOption] = useState<string | null>(responses[currentStep] || null);
   const [isComplete, setIsComplete] = useState(false);
 
+  useEffect(() => {
+    if (selectedOption !== null) {
+      setResponse(currentStep, selectedOption);
+    }
+  }, [selectedOption, currentStep]);
+  
   const handleNext = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption(null);
+    if (currentStep < questions.length - 1) {
+      setCurrentStep(currentStep + 1);
+      setSelectedOption(responses[currentStep + 1] || null);
     } else {
       setIsComplete(true);
     }
   };
 
   const handleBack = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedOption(null);
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+      setSelectedOption(responses[currentStep - 1] || null);
     }
   };
 
-  const handleOptionSelect = (option: string) => {
-    setSelectedOption(option);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
   };
 
   const renderTextWithBold = (text: string) => {
-    const parts = text.split(/(\*\*[^*]+\*\*)/);
+    const processedText = text.replace("**Juan**", `**${userName || "Juan"}**`);
+    const parts = processedText.split(/(\*\*[^*]+\*\*)/);
+
     return parts.map((part, index) =>
       part.startsWith('**') && part.endsWith('**') ? (
         <strong key={index}>{part.slice(2, -2)}</strong>
@@ -148,45 +153,57 @@ export const Question: React.FC = () => {
     );
   };
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion = questions[currentStep];
+  const isNameStep = currentStep === 0;
 
   return (
     <>
-      <ProgressBar currentStep={currentQuestionIndex + 1} totalSteps={questions.length} />
+      <ProgressBar currentStep={currentStep + 1} totalSteps={questions.length} />
       {isComplete ? (
         <FinalScreen />
       ) : (
-
         <SplitContainer>
-          <Header currentStep={currentQuestionIndex + 1} totalSteps={6} />
+          <Header currentStep={currentStep + 1} totalSteps={questions.length} />
           <TextContainer>
             <LogoDesktop src="/logo.png" alt="Logo Customer Scoops" />
             <QuestionContainer>
               <>
                 {currentQuestion.text && <p>{renderTextWithBold(currentQuestion.text)}</p>}
                 <p>{currentQuestion.question}</p>
-                {currentQuestion.input && <Input placeholder={currentQuestion.input} />}
-                <OptionsContainer layout={currentQuestion.layout}>
-                  {currentQuestion.options?.map((option) => (
-                    <OptionButton
-                      key={option}
-                      selected={selectedOption === option}
-                      onClick={() => handleOptionSelect(option)}
-                      layout={currentQuestion.layout}
-                    >
-                      {option}
-                    </OptionButton>
-                  ))}
-                </OptionsContainer>
+                {isNameStep ? (
+                  <Input
+                    placeholder={currentQuestion.input}
+                    value={userName}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <OptionsContainer layout={currentQuestion.layout}>
+                    {currentQuestion.options?.map((option) => (
+                      <OptionButton
+                        key={option}
+                        selected={selectedOption === option}
+                        onClick={() => setSelectedOption(option)}
+                        layout={currentQuestion.layout}
+                      >
+                        {option}
+                      </OptionButton>
+                    ))}
+                  </OptionsContainer>
+                )}
               </>
             </QuestionContainer>
             <ButtonsContainer>
-              {currentQuestionIndex > 0 && (
+              {currentStep > 0 && (
                 <Button onClick={handleBack} variant="tertiary">
                   <IoArrowBack className="icon" />
                 </Button>
               )}
-              <Button onClick={handleNext}>Siguiente</Button>
+              <Button
+                onClick={handleNext}
+                disabled={(isNameStep && !userName) || (!isNameStep && !selectedOption)}
+              >
+                Siguiente
+              </Button>
             </ButtonsContainer>
           </TextContainer>
         </SplitContainer>

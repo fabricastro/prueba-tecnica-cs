@@ -1,11 +1,15 @@
-import {Question} from './Views/Question';
+import React from 'react'
+import { Question } from './Views/Question';
+import { SurveyProvider } from './Context/SurveyContext';
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
-    <div className='App'>
-      <Question/>
-    </div>
+      <div className='App'>
+        <SurveyProvider>
+          <Question />
+        </SurveyProvider>
+      </div>
     </>
   )
 }

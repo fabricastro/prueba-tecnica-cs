@@ -33,6 +33,9 @@ const StyledButton = styled.button<ButtonProps>`
     background-color: #aaa;
     cursor: not-allowed;
   }
+  &:disabled:hover {
+    background-color: #aaa;
+  }
   
   @media (min-width: 1350px) {
       max-height: 50px;
