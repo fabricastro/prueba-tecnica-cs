@@ -45,7 +45,7 @@ const StepIndicator = styled.div`
   display: flex;
   align-items: flex-start;
   position: absolute;
-  top: 58px;
+  top: 24px;
   right: 16px;
   font-family: 'SF Pro Display', sans-serif;
   color: #231331;

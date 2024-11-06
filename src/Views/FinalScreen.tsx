@@ -50,7 +50,9 @@ const FinalScreen: React.FC = () => {
           <SubMessage className='sub-message'>por querer ser parte  </SubMessage>
           <SubMessage>de la familia Scoopers.</SubMessage>
           <p><em>Nos vemos pronto!</em></p>
-          <Button onClick={() => alert("Formulario completado")} className='final'>Finalizar</Button>
+          <Button onClick={() => (window.location.href = 'https://customerscoops.com/')} className='final'>
+            Finalizar
+          </Button>
         </MainContainer>
       </SplitContainer>
     </>
