@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPRODISPLAYREGULAR.OTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+:root {
+  font-family: 'K2D', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Colores */
+  --primary-color: #4A148C;
+  --secondary-color: #00c2cb;
+  --background-color: #ffffff;
+  --text-color: #231331;
+  --button-hover-color: #7e57c2;
+  --placeholder-color: #aaa;
+
+  /* Animaciones */
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--button-hover-color);
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5em;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.8em 2em;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: var(--button-hover-color);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #f9f9f9;
+    --text-color: #213547;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.App{
+  height: 100vh;
+}
+
+.text{
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+p {
+  font-family: 'K2D', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 23px;
+}
+
+.bar{
+  width:1px;
+  height: 36px;
+  background-color: #231331;
+}
+
+.pt-4{
+  margin-top: 24px;
+}
