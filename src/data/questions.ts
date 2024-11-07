@@ -2,11 +2,15 @@
 
 export type Question = {
     id: number;
-    question: string;
+    question?: string;
     text?: string;
     options?: string[];
     input?: string;
-    layout: 'grid' | "grid2" | 'flex' | 'column';
+    layout?: 'grid' | "grid2" | 'flex' | 'column';
+    text2?: string;
+    text3?: string;
+    button?: string;
+    showAlphabeticalChips?: boolean;
 };
 
 // Lista de preguntas
@@ -17,6 +21,7 @@ export const questions: Question[] = [
         question: "Queremos conocerte, ¿cuál es tu nombre?",
         input: "Nombre",
         layout: 'flex', 
+        showAlphabeticalChips: false 
     }, 
     {
         id: 2,
@@ -24,6 +29,7 @@ export const questions: Question[] = [
         question: "¿Cuál es tu cargo/posición dentro de tu empresa?",
         options: ["Board member", "C-level", "Gerente", "Subgerente", "Jefe área", "Lider de área", "Ejecutivo / Analista", "Otro"],
         layout: 'grid', 
+        showAlphabeticalChips: false 
     },
     {
         id: 3,
@@ -38,17 +44,28 @@ export const questions: Question[] = [
             "Otro",
         ],
         layout: 'column',
+        showAlphabeticalChips: true,
     },
     {
         id: 4,
         question: "¿Cuál CRM están utilizando en tu empresa?",
         options: ["SAP", "Microsoft Dynamics", "Salesforce", "Hubspot", "Zoho", "Netsuite (Oracle)", "Monday", "CRM Propio", "No tengo CRM"],
         layout: 'grid2',  
+        showAlphabeticalChips: false,
     },
     {
         id: 5,
         question: "¿A cuál industria pertenece tu empresa?",
         options: ["Tecnología", "Software", "Servicios", "Financiera", "Telecomunicaciones", "Producción /Fabricación", "Logística", "Consumo Masivo", "Mayorista", "Retail", "Otra"],
-        layout: 'grid2',
+        layout: 'grid2', 
+        showAlphabeticalChips: false,
+    },
+    {
+        id: 6,
+        text: "Muchas Gracias!",
+        text2: "por querer ser parte <br> de la familia Scoopers",
+        text3: "Nos vemos pronto!",
+        button: "Finalizar",
+        showAlphabeticalChips: false,
     }
 ];

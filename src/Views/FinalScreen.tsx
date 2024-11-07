@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../Components/Button';
 import Header from '../Components/Header';
+import ProgressBar from '../Components/ProgressBar';
 
 const SplitContainer = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const FinalScreen: React.FC = () => {
   return (
     <>
       <SplitContainer>
+        <ProgressBar currentStep={6} totalSteps={6} />
         <Header currentStep={6} totalSteps={6} />
         <MainContainer>
           <Message>Muchas Gracias</Message>

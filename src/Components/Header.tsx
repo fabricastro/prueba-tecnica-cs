@@ -12,7 +12,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 49px;
-
+  padding-top: 43px;
   @media (min-width: 1350px) {
     padding: 0;
     flex-basis: 50%;
@@ -45,13 +45,13 @@ const StepIndicator = styled.div`
   display: flex;
   align-items: flex-start;
   position: absolute;
-  top: 24px;
+  top: 60px;
   right: 16px;
   font-family: 'SF Pro Display', sans-serif;
   color: #231331;
 
   @media (min-width: 1350px) {
-    top: 195px;
+    top: 150px;
     right: 130px;
   }
 `;
@@ -80,7 +80,7 @@ const TotalSteps = styled.span`
 const LogoCS = styled.img`
   position: absolute;
   left: 49px;
-
+  max-width: 100px;
   @media (min-width: 1350px) {
   display: none;
   }
