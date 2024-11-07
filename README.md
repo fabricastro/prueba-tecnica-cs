@@ -1,50 +1,16 @@
-# React + TypeScript + Vite
+# Customer Scoops Prueba Técnica - Encuesta Interactiva
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web para realizar encuestas interactivas y recolectar información de los usuarios de manera amigable y visualmente atractiva. La aplicación está desarrollada en React y utiliza Context API para manejar el estado global de la encuesta, así como estilos responsivos para adaptarse a diferentes dispositivos.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Puedes ver una demo de la aplicación en [link_a_la_demo](https://customerscoopschallenge.vercel.app/).
 
-## Expanding the ESLint configuration
+## Características
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Encuesta Interactiva**: Navegación paso a paso para recolectar datos de los usuarios.
+- **Cambio de fondo adaptativo**: El fondo de la aplicación cambia según el estado de la encuesta, solo en dispositivos de escritorio.
+- **Context API**: Manejo de estado global para la encuesta, incluyendo preguntas, respuestas y pasos.
+- **Estilos Responsivos**: Adaptación visual para pantallas de escritorio y dispositivos móviles.
+- **Opciones con Chips**: Se muestran opciones con chips alfabéticos en preguntas específicas.
+- **Validación de Respuestas**: Previene la navegación sin que el usuario seleccione una opción o complete los datos requeridos.

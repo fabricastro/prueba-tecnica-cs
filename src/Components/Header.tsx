@@ -52,7 +52,7 @@ const StepIndicator = styled.div`
 
   @media (min-width: 1250px) {
     top: 150px;
-    right: 130px;
+    right: 100px;
   }
 `;
 
