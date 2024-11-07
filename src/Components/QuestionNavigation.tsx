@@ -15,6 +15,7 @@ const NavigationContainer = styled.div<{ applyMargin?: boolean }>`
   display: flex;
   gap: 7px;
   padding-top: 34px;
+  padding-bottom: 34px;
   
   /* Aplica el margen solo en pantallas de escritorio */
   ${({ applyMargin }) => applyMargin && `
