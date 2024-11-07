@@ -36,7 +36,7 @@ const BackgroundImage = styled.img`
     left: 50%;
     transform: translateX(-50%); 
     width: auto;
-    height: auto;
+    height: 80%;
     max-height: 100%; 
   }
 `;

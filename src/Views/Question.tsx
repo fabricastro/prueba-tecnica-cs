@@ -14,15 +14,18 @@ import FinalContent from '../Components/FinalContent';
 import QuestionContainer from '../Components/QuestionContainer';
 
 export const Question: React.FC = () => {
-  const {  setBackgroundColor, currentStep, setCurrentStep, responses, setResponse, userName, setUserName } = useSurvey();
+  const { setBackgroundColor, currentStep, setCurrentStep, responses, setResponse, userName, setUserName } = useSurvey();
   const [selectedOption, setSelectedOption] = useState<string | null>(responses[currentStep] || null);
   const isFinalStep = currentStep === questions.length - 1;
-  
+  const currentQuestion = questions[currentStep];
+  const isInputQuestion = Boolean(currentQuestion.input);
+  const isOptionQuestion = Boolean(currentQuestion.options);
+
   useEffect(() => {
     if (isFinalStep) {
       setBackgroundColor('#00ccbc');
     } else {
-      setBackgroundColor('#FFFFFF'); 
+      setBackgroundColor('#FFFFFF');
     }
   }, [isFinalStep, setBackgroundColor]);
 
@@ -30,7 +33,7 @@ export const Question: React.FC = () => {
     if (selectedOption) {
       setResponse(currentStep, selectedOption);
     }
-  }, [selectedOption, currentStep]);
+  }, [selectedOption, currentStep, setResponse]);
 
   const handleNext = () => {
     if (currentStep < questions.length - 1) {
@@ -53,8 +56,8 @@ export const Question: React.FC = () => {
       handleNext();
     }
   };
-  
-  const currentQuestion = questions[currentStep];
+
+  const isNextDisabled = (isInputQuestion && !userName) || (isOptionQuestion && !selectedOption);
 
   return (
     <>
@@ -87,7 +90,7 @@ export const Question: React.FC = () => {
                   />
                 )}
 
-                {currentQuestion.input && (
+                {isInputQuestion && (
                   <Input
                     placeholder={currentQuestion.input}
                     value={userName}
@@ -95,16 +98,15 @@ export const Question: React.FC = () => {
                   />
                 )}
 
-                {currentQuestion.options && (
+                {isOptionQuestion && (
                   <OptionList
-                    options={currentQuestion.options}
+                    options={currentQuestion.options || []}
                     selectedOption={selectedOption}
                     onSelect={setSelectedOption}
                     layout={currentQuestion.layout || 'flex'}
                     showAlphabeticalChips={currentQuestion.showAlphabeticalChips || false}
                   />
                 )}
-
               </>
             )}
           </QuestionContainer>
@@ -114,11 +116,11 @@ export const Question: React.FC = () => {
               isFirstStep={currentStep === 0}
               onNext={handleNext}
               onBack={handleBack}
-              isNextDisabled={!userName && !selectedOption}
+              isNextDisabled={isNextDisabled}
             />
           )}
         </TextContainer>
       </SplitContainer>
-    </> 
+    </>
   );
 };
