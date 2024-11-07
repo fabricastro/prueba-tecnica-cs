@@ -6,7 +6,22 @@ const AppContent: React.FC = () => {
   const { backgroundColor } = useSurvey();
 
   useEffect(() => {
-    document.body.style.backgroundColor = backgroundColor;
+    const mediaQuery = window.matchMedia("(min-width: 1200px)");
+
+    const updateBackgroundColor = () => {
+      if (mediaQuery.matches) {
+        document.body.style.backgroundColor = backgroundColor;
+      } else {
+        document.body.style.backgroundColor = "#FFFFFF"; 
+      }
+    };
+
+    updateBackgroundColor();
+    mediaQuery.addEventListener("change", updateBackgroundColor); 
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateBackgroundColor); 
+    };
   }, [backgroundColor]);
 
   return <Question />;
