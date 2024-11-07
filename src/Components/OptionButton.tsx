@@ -15,7 +15,7 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
   justify-content: center;
   color: ${({ selected }) => (selected ? '#fff' : '#231331')};
   padding: 0.8rem 1.2rem;
-  font-size: 11px;
+  font-size: 12px;
   border-radius: 30px;
   border: ${({ selected }) => (selected ? '1px solid #4a148c' : '1px solid #231331')};
   background-color: ${({ selected }) => (selected ? '#231331' : '#f9f9f9')};
@@ -30,7 +30,7 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
     color: #fff;
   }
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     font-size: 14px;
     min-height: 50px;
     padding: 0.6rem 1rem;
@@ -59,7 +59,7 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
       align-items: center;
       padding: 4px 6px;
 
-      @media (min-width: 1350px) {
+      @media (min-width: 1200px) {
         padding: 0.6rem 1rem;
       }
     `}

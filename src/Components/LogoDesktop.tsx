@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledLogo = styled.img`
   display: none;
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     display: block;
     max-width: 120px;
     padding-bottom: 65px

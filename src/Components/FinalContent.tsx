@@ -27,7 +27,7 @@ const Text = styled.p<TextProps>`
           font-size: 24px;
           color: #231331;
 
-          @media (min-width: 1350px) {
+          @media (min-width: 1200px) {
             font-size: 30px;
           }
         `;
@@ -37,7 +37,7 @@ const Text = styled.p<TextProps>`
           font-size: 20px;
           color: #4a4a4a;
 
-          @media (min-width: 1350px) {
+          @media (min-width: 1200px) {
             font-size: 30px;
             line-height: 40px;
           }
@@ -51,9 +51,10 @@ const Text = styled.p<TextProps>`
           line-height: 26px;
           margin-bottom: 20px;
 
-          @media (min-width: 1350px) {
+          @media (min-width: 1200px) {
             font-size: 26px;
             margin-bottom: 60px;
+            color: #231331;
           }
         `;
             default:
@@ -71,7 +72,7 @@ const StyledButton = styled(Button)`
   align-self: flex-start;
   text-align: center;
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     width: 140px;
     justify-content: center;
   }

@@ -7,6 +7,8 @@ interface SurveyContextProps {
     setResponse: (questionId: number, answer: string) => void;
     userName: string;
     setUserName: (name: string) => void;
+    backgroundColor: string;
+    setBackgroundColor: (color: string) => void;
 }
 
 const SurveyContext = createContext<SurveyContextProps | undefined>(undefined);
@@ -15,13 +17,23 @@ export const SurveyProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     const [currentStep, setCurrentStep] = useState(0);
     const [responses, setResponses] = useState<{ [key: number]: string }>({});
     const [userName, setUserName] = useState('');
+    const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // Color inicial
 
     const setResponse = (questionId: number, answer: string) => {
         setResponses((prevResponses) => ({ ...prevResponses, [questionId]: answer }));
     };
 
     return (
-        <SurveyContext.Provider value={{ currentStep, setCurrentStep, responses, setResponse, userName, setUserName }}>
+        <SurveyContext.Provider value={{
+            currentStep,
+            setCurrentStep,
+            responses,
+            setResponse,
+            userName,
+            setUserName,
+            backgroundColor,
+            setBackgroundColor
+        }}>
             {children}
         </SurveyContext.Provider>
     );

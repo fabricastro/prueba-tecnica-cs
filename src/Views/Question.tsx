@@ -14,8 +14,17 @@ import FinalContent from '../Components/FinalContent';
 import QuestionContainer from '../Components/QuestionContainer';
 
 export const Question: React.FC = () => {
-  const { currentStep, setCurrentStep, responses, setResponse, userName, setUserName } = useSurvey();
+  const {  setBackgroundColor, currentStep, setCurrentStep, responses, setResponse, userName, setUserName } = useSurvey();
   const [selectedOption, setSelectedOption] = useState<string | null>(responses[currentStep] || null);
+  const isFinalStep = currentStep === questions.length - 1;
+  
+  useEffect(() => {
+    if (isFinalStep) {
+      setBackgroundColor('#00ccbc');
+    } else {
+      setBackgroundColor('#FFFFFF'); 
+    }
+  }, [isFinalStep, setBackgroundColor]);
 
   useEffect(() => {
     if (selectedOption) {
@@ -44,9 +53,8 @@ export const Question: React.FC = () => {
       handleNext();
     }
   };
-
+  
   const currentQuestion = questions[currentStep];
-  const isFinalStep = currentStep === questions.length - 1;
 
   return (
     <>

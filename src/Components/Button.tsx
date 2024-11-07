@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const StyledButton = styled.button<ButtonProps>`
   padding: 0.8rem 2rem;
-  font-size: 11px;
+  font-size: 12px;
   font-family: 'SF Pro', sans-serif;
   font-weight: 500;
   border: none;
@@ -37,7 +37,7 @@ const StyledButton = styled.button<ButtonProps>`
     background-color: #aaa;
   }
   
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px ) {
       max-height: 50px;
   }
   /* Estilos específicos para variantes */
@@ -51,7 +51,7 @@ const StyledButton = styled.button<ButtonProps>`
         background-color: #3e2357;
       }
 
-      @media (min-width: 1350px) {
+      @media (min-width: 1200px) {
         font-size: 14px;
         height: 50px;
       }
@@ -84,7 +84,7 @@ const StyledButton = styled.button<ButtonProps>`
         background-color: #f0f0f0;
       }
 
-      @media (min-width: 1350px) {
+      @media (min-width: 1200px) {
         height: 50px;
         width: 50px;
       }

@@ -13,7 +13,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   padding-bottom: 49px;
   padding-top: 43px;
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     padding: 0;
     flex-basis: 50%;
     background: linear-gradient(283.73deg, #231331 -29.4%, #00CCBC 50.02%);
@@ -28,7 +28,7 @@ const BackgroundImage = styled.img`
   width: 100%;
   height: 100%;
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     content: url('/header-man.png');
     padding: 0;
     position: absolute;
@@ -50,7 +50,7 @@ const StepIndicator = styled.div`
   font-family: 'SF Pro Display', sans-serif;
   color: #231331;
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1250px) {
     top: 150px;
     right: 130px;
   }
@@ -61,7 +61,7 @@ const CurrentStep = styled.span`
   font-weight: bold;
   margin-right: 6px; 
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1250px) {
     font-size: 24px;
   }
 `;
@@ -72,7 +72,7 @@ const TotalSteps = styled.span`
   margin-left: 6px;
   padding-top: 6px;
 
-  @media (min-width: 1350px) {
+  @media (min-width: 1250px) {
     font-size: 14px;
   }
 `;
@@ -81,7 +81,7 @@ const LogoCS = styled.img`
   position: absolute;
   left: 49px;
   max-width: 100px;
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
   display: none;
   }
 `;

@@ -18,7 +18,7 @@ const StyledInput = styled.input`
     border-bottom: 1px solid #4A148C;
   }
  
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     font-size: 18px;
   }
 `;

@@ -96,7 +96,7 @@ p {
   line-height: 23px;
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1200px) {
   p{
     font-size: 22px;
   }
@@ -108,7 +108,7 @@ p {
   background-color: #231331;
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1200px) {
   .bar{
     width:2px;
     height: 46px;

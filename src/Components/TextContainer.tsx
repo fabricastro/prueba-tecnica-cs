@@ -6,7 +6,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0px 35px;
-  @media (min-width: 1350px) {
+  @media (min-width: 1200px) {
     padding-left: 160px;
     padding-right: 100px;
   }

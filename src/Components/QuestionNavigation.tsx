@@ -18,7 +18,7 @@ const NavigationContainer = styled.div<{ applyMargin?: boolean }>`
   
   /* Aplica el margen solo en pantallas de escritorio */
   ${({ applyMargin }) => applyMargin && `
-    @media (min-width: 1350px) {
+    @media (min-width: 1200px) {
       margin-left: -58px;
     }
   `}
