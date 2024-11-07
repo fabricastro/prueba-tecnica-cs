@@ -50,6 +50,10 @@ const StepIndicator = styled.div`
   font-family: 'SF Pro Display', sans-serif;
   color: #231331;
 
+  @media (min-width: 768px) {
+    top: 100px;
+    right: 50px;
+  }
   @media (min-width: 1250px) {
     top: 150px;
     right: 100px;
@@ -89,7 +93,7 @@ const LogoCS = styled.img`
 const Header: React.FC<HeaderProps> = ({ currentStep, totalSteps }) => {
     return (
         <HeaderContainer>
-            <BackgroundImage src="/header.svg" alt="Header Background" />
+            <BackgroundImage src="/header.png" alt="Header Background" />
             <LogoCS src="/logo.png" alt="Logo Customer Scoops" />
             <StepIndicator>
                 <CurrentStep>{String(currentStep).padStart(2, '0')}</CurrentStep>
