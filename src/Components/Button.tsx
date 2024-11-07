@@ -22,7 +22,6 @@ const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   max-height: 35px;
-  /* Estilos comunes para todos los botones */
   &:focus,
   &:active {
     outline: none;
@@ -40,7 +39,6 @@ const StyledButton = styled.button<ButtonProps>`
   @media (min-width: 1200px ) {
       max-height: 50px;
   }
-  /* Estilos específicos para variantes */
   ${({ variant }) =>
     variant === 'primary' &&
     css`

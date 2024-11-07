@@ -40,10 +40,7 @@ La aplicación se ha desarrollado dividiendo el diseño en componentes reutiliza
 ## Uso de Context API
 
 El proyecto usa Context API (SurveyContext) para manejar el estado global, como el paso actual, las respuestas, el nombre del usuario y el color de fondo en la última pantalla.
-    ```bash
-    import { useSurvey } from './Context/SurveyContext';
-    const { currentStep, setCurrentStep, responses, setResponse, userName, setUserName, backgroundColor } = useSurvey();
-
+    
 ## Estilos y Responsividad
 
 Los estilos están creados con styled-components. El diseño es "mobile-first", lo que significa que las pantallas se adaptan a dispositivos móviles primero y luego a pantallas más grandes usando @media.

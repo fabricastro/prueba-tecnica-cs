@@ -17,7 +17,7 @@ export const SurveyProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     const [currentStep, setCurrentStep] = useState(0);
     const [responses, setResponses] = useState<{ [key: number]: string }>({});
     const [userName, setUserName] = useState('');
-    const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // Color inicial
+    const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
 
     const setResponse = (questionId: number, answer: string) => {
         setResponses((prevResponses) => ({ ...prevResponses, [questionId]: answer }));

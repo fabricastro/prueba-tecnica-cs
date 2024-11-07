@@ -1,5 +1,3 @@
-// src/data/questions.ts
-
 export type Question = {
     id: number;
     question?: string;
@@ -13,7 +11,6 @@ export type Question = {
     showAlphabeticalChips?: boolean;
 };
 
-// Lista de preguntas
 export const questions: Question[] = [
     {
         id: 1,

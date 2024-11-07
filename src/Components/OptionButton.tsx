@@ -1,4 +1,3 @@
-// src/components/OptionButton.tsx
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -6,7 +5,7 @@ interface OptionButtonProps {
   children: React.ReactNode;
   selected?: boolean;
   onClick: () => void;
-  layout?: 'grid' | 'flex' | 'column' | 'grid2'; // Prop para cambiar el layout
+  layout?: 'grid' | 'flex' | 'column' | 'grid2';
 }
 
 const StyledOptionButton = styled.button<OptionButtonProps>`
@@ -21,8 +20,8 @@ const StyledOptionButton = styled.button<OptionButtonProps>`
   background-color: ${({ selected }) => (selected ? '#231331' : '#f9f9f9')};
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
-  flex: 1; /* Hace que el botón ocupe el mismo espacio horizontal */
-  height: 100%; /* Se ajusta a la altura máxima de los botones en la fila */
+  flex: 1;
+  height: 100%;
   box-sizing: border-box;
 
   &:hover {
